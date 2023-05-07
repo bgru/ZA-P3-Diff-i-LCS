@@ -1,0 +1,39 @@
+Dynamic programming is used in the lcs algorithm to efficiently compute the longest common subsequence of two strings.
+The main idea behind dynamic programming is to break the problem into smaller overlapping subproblems and use their solutions
+to build up the solution for the larger problem.
+It uses a technique called memoization to store intermediate results, which helps to avoid redundant computation of the same subproblems.
+
+In the given lcs algorithm, a two-dimensional matrix `dp` is used to store the solutions of subproblems.
+The dimensions of the matrix are `(m + 1)` and `(n + 1)`, where `m` and `n` are the lengths of the input strings a and b, respectively.
+The value of `dp[i][j]` represents the length of the longest common subsequence of the prefixes `a[0...I-1]` and `b[0...J-1]`.
+
+The algorithm fills the `dp` matrix iteratively using two nested loops.
+The time complexity of this part is o(m * n), where m and n are the lengths of strings a and b.
+The inner loop checks if the current characters of the two strings are the same.
+If they are, it sets `dp[i][j]` to the value of `dp[i - 1][j - 1] + 1`.
+Otherwise, it sets `dp[i][j]` to the maximum of `dp[i - 1][j]` and `dp[i][j - 1]`.
+
+After filling the `dp` matrix, the algorithm reconstructs the longest common subsequence by traversing the matrix in reverse order,
+starting from the bottom-right corner (dp[m][n]) and moving towards the top-left corner (dp[0][0]).
+The time complexity of this part is o(m + n).
+
+The overall time complexity of the given lcs algorithm is o(m * n), which is a quadratic complexity.
+This is because the most time-consuming part of the algorithm is filling the `dp` matrix with two nested loops
+iterating over the lengths of the input strings.
+
+The memory complexity of the given lcs algorithm is also o(m * n), where m and n are the lengths of the input strings a and b.
+
+The primary source of memory consumption in this algorithm is the two-dimensional matrix `dp` with dimensions (m + 1) and (n + 1).
+This matrix stores the length of the longest common subsequence for all possible combinations of prefixes of a and b.
+
+Since there are (m + 1) rows and (n + 1) columns in the matrix, the total number of elements in the matrix is (m + 1) * (n + 1).
+Hence, the memory complexity of the algorithm is o(m * n).
+
+Additionally, there is a string `lcs` used to store the resulting longest common subsequence.
+In the worst case, the length of the `lcs` string could be min(m, n).
+However, this does not affect the overall memory complexity, as the dominant factor remains the `dp` matrix with o(m * n) complexity.
+
+The time complexity of LCS length part is o(m * n).
+The time complexity of LCS word part is o(m + n).
+The overall time complexity of the LCS algorithm is o(m * n)
+The memory complexity of the algorithm is o(m * n).
