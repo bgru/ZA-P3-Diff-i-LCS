@@ -1,0 +1,15 @@
+Line 1: This is a sample text.
+Line 2: The weather is great today.
+Line 3: The sky is blue.
+Line 4: I enjoy programming in C++.
+Line 5: Artificial intelligence is fascinating.
+Line 6: The sun is shining.
+Line 7: I need to buy some groceries.
+Line 8: The park is full of people.
+Line 9: It's a great day for a walk.
+Line 10: Dogs are playing in the park.
+Line 11: I am learning something new.
+Line 12: My favorite color is blue.
+Line 13: I like to play soccer.
+Line 14: The cake is delicious.
+Line 15: The library is my favorite place.

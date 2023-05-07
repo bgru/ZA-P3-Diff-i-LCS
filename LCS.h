@@ -1,26 +1,30 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 // Function to find the longest common subsequence of two strings
-std::string LCS(const std::string& A, const std::string& B) {
-    int m = A.size();
-    int n = B.size();
-    std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
+string LCS(const string& A, const string& B) {
+    size_t m = A.size();
+    size_t n = B.size();
+    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
 
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
+    for (size_t i = 1; i <= m; i++) {
+        for (size_t j = 1; j <= n; j++) {
             if (A[i - 1] == B[j - 1]) {
                 dp[i][j] = dp[i - 1][j - 1] + 1;
             }
             else {
-                dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
     }
 
-    std::string lcs = "";
-    int i = m, j = n;
+    string lcs = "";
+    size_t i = m, j = n;
     while (i > 0 && j > 0) {
         if (A[i - 1] == B[j - 1]) {
             lcs = A[i - 1] + lcs;
@@ -38,47 +42,37 @@ std::string LCS(const std::string& A, const std::string& B) {
     return lcs;
 }
 
-// Function to implement diffing using the longest common subsequence
-std::string LCS_Diffing(const std::string& A, const std::string& B) {
-    std::string lcs = LCS(A, B);
-    std::string resultA = "";
-    std::string resultB = "";
+// Function to implement file diffing using the longest common subsequence
+void LCS_Diffing(const string& file1, const string& file2) {
+    ifstream inFile1(file1);
+    ifstream inFile2(file2);
 
-    int i = 0, j = 0, k = 0;
-    while (k < lcs.size()) {
-        bool addedPlus = false;
-        bool addedMinus = false;
-        while (i < A.size() && A[i] != lcs[k]) {
-            if (!addedPlus) {
-                resultA += "+";
-                addedPlus = true;
-            }
-            resultA += A[i];
-            i++;
-        }
-        addedPlus = false;
-        while (j < B.size() && B[j] != lcs[k]) {
-            if (!addedMinus) {
-                resultB += "-";
-                addedMinus = true;
-            }
-            resultB += B[j];
-            j++;
-        }
-        addedMinus = false;
-
-        resultA += "=";
-        resultA += lcs[k];
-        resultB += "=";
-        resultB += lcs[k];
-
-        i++;
-        j++;
-        k++;
+    if (!inFile1.is_open() || !inFile2.is_open()) {
+        cerr << "Error opening one of the files" << endl;
+        return;
     }
 
-    // No, these loops are not necessary as the logic above handles the entire strings
-    // Keeping them here will lead to repeating the last character in each string
+    string line1, line2;
+    while (getline(inFile1, line1) && getline(inFile2, line2)) {
+        string lcs = LCS(line1, line2);
 
-    return resultA + "\n" + resultB;
+        if (lcs == line1 && lcs == line2) {
+            cout << "= " << line1 << endl;
+        }
+        else {
+            cout << "- " << line1 << endl;
+            cout << "+ " << line2 << endl;
+        }
+    }
+
+    // Handle any remaining lines in either file
+    while (getline(inFile1, line1)) {
+        cout << "- " << line1 << endl;
+    }
+    while (getline(inFile2, line2)) {
+        cout << "+ " << line2 << endl;
+    }
+
+    inFile1.close();
+    inFile2.close();
 }

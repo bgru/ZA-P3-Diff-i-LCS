@@ -1,0 +1,19 @@
+Line 1: This is a sample text.
+Line 2: The weather is wonderful today.
+Line 3: The sky is blue.
+Line 4: I enjoy programming in Python.
+Line 5: Artificial intelligence is fascinating.
+Line 6: The sun is bright.
+Line 7: I need to buy some fruits.
+Line 8: The park is full of people.
+Line 9: It's a great day for a run.
+Line 10: Dogs are playing in the park.
+Line 11: I am learning something interesting.
+Line 12: My favorite color is green.
+Line 13: I like to play basketball.
+Line 14: The pie is delicious.
+Line 15: I am going on a trip.
+Line 16: I like watching movies.
+Line 17: My favorite sport is tennis.
+Line 18: I enjoy swimming in the ocean.
+Line 19: The library is my favorite place.
